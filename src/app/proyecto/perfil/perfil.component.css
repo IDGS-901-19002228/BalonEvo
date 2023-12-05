@@ -1,0 +1,83 @@
+/* Estilos generales */
+.profile-section {
+    padding: 20px;
+    min-height: 507px;
+  }
+  
+  .container-md {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .profile-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para los items del perfil */
+  .profile-item {
+    margin-bottom: 15px;
+  }
+  
+  .profile-label {
+    font-weight: bold;
+  }
+  
+  .profile-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para los botones */
+  .edit-button,
+  .save-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  /* Cambio del color de texto en los botones */
+.btn-warning {
+  color: #fff; /* Cambio del color de texto a blanco */
+}
+
+.btn-success {
+  color: #fff; /* Cambio del color de texto a blanco */
+}
+  
+  .edit-button:hover,
+  .save-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mensaje de advertencia */
+.warning-message {
+  font-size: xx-large;
+  background-color: #f8d4d2;
+  color: #a0a0a0;
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}

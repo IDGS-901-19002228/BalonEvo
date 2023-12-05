@@ -1,0 +1,19 @@
+
+<!-- add-card.component.html -->
+
+<div>
+    <h2>Agregar Tarjeta Bancaria</h2>
+    <form (ngSubmit)="agregarTarjeta()">
+      <div>
+        <label for="numero">Número de Tarjeta:</label>
+        <input type="text" id="numero" >
+      </div>
+      <div>
+        <label for="nombre">Nombre en la Tarjeta:</label>
+        <input type="text" id="nombre" >
+      </div>
+      <!-- Puedes agregar más campos aquí, como fecha de vencimiento, código de seguridad, etc. -->
+      <button type="submit">Agregar Tarjeta</button>
+    </form>
+  </div>
+  

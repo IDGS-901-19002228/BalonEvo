@@ -1,0 +1,103 @@
+
+
+
+<section>
+    <div class="container-fluid" style="padding:50px; padding-top: 20px;">
+        <div class=" row">
+            <h2>Listado de compras</h2>
+            <!-- Formulario de edición -->
+            <!-- <div class="col-md-{{ mostrarFormulario ? '3' : '0' }} form-container" *ngIf="mostrarFormulario">
+                <div class="form-header">
+                    <h4 class="form-title">Editar </h4>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    [(ngModel)]="compraSeleccionado.nombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="empresa" class="form-label">Empresa:</label>
+                                <input type="text" class="form-control" id="empresa" name="empresa"
+                                    [(ngModel)]="proveedorSeleccionado.empresa" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="rfc" class="form-label">RFC:</label>
+                                <input type="text" class="form-control" id="rfc" name="rfc"
+                                    [(ngModel)]="proveedorSeleccionado.rfc" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="telefono" class="form-label">Telefono:</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono"
+                                    [(ngModel)]="proveedorSeleccionado.telefono" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="correo" class="form-label">Correo:</label>
+                                <input type="text" class="form-control" id="correo" name="correo"
+                                    [(ngModel)]="proveedorSeleccionado.correo" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div> -->
+
+            <!-- Tabla de usuarios -->
+            <div class="col-md-{{ mostrarFormulario ? '8' : '8' }} tabla-container"
+                [class.expanded]="!mostrarFormulario" style="text-align: center; font-size: 12px;">
+                <table class="table tabla " [class.width]="!mostrarFormulario">
+                    <thead>
+                        <tr>
+                            <!-- <th>Nombre Proveedor</th>
+                            <th>Nombre Materia Prima</th> -->
+                            <!-- <th>ID Proveedor</th>
+                            <th>ID Materia Prima</th> -->
+                            <th>Fecha</th>
+                            <th>Cantidad</th>
+                            <th>Costo Compra</th>
+                            <!-- <th>Acciones</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let compra of compras">
+                            <!-- <td>{{ compra.nombreProveedor }}</td>
+                            <td>{{ compra.nombreMateriaPrima }}</td> -->
+                            <!-- <td>{{ compra.idProveedor }}</td> -->
+                            <!-- <td>{{ compra.id_materia_prima }}</td> -->
+                            <td>{{ compra.fecha | date:'yyyy-MM-dd' }}</td>
+                            <td>{{ compra.cantidad }}</td>
+                            <td>{{ compra.costo_compra }}</td>
+                            <!-- <td>
+                                <button class="btn btn-warning text-white" (click)="alternarFormulario(compra)">
+                                    <i class="fas fa-pencil-alt"></i> Editar
+                                </button>
+                                
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+       
+       
+       
+
+
+        </div>
+    </div>
+</section>

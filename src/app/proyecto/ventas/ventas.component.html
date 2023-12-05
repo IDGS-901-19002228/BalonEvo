@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ventas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <form>
+            <div>
+                <h2>Registro de Ventas</h2>
+            </div>
+                <div class="mb-3">
+                    <h3>Buscar por Cliente:</h3>
+                    <input type="text" class="form-control" id="clienteBusqueda">
+                </div>
+                    
+                <table class="table table-bordered">
+                    <thead>
+                                <!-- Este modulo contara con un boton para ver los productos del cliente -->
+                                <!-- El carrito solo servira para comprar online -->
+                                <!-- El boton se llamara detalle para que vea los productos -->
+                        <tr>
+                            <th>Folio</th>
+                            <th>Fecha de Venta</th>
+                            <th>Cliente</th>
+                            <th>Ver productos</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let venta of ventas">
+                            <tr>
+                                <td>{{venta.id}}</td>
+                                <td>{{venta.fecha}}</td>
+                                <td>{{venta.cliente}}</td>
+                               
+                                <td><!--   -->
+                                    <button class="btn btn-link"   (click)="detallesventas(venta.id)"
+                                    data-bs-toggle="modal" data-bs-target="#divDetalleCompra">
+                                            <i class="fa fa-eye"></i> 
+                                      </button>
+                                  
+                                </td>
+                            </tr>
+                                <!-- Agregar más filas según las ventas realizadas -->
+                            </tbody>
+                </table>
+        </form>
+    </div>    
+
+
+    
+    <div class="modal fade" id="divDetalleCompra" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="border-radius: 10px;">
+            <div class="modal-content">
+                <div class="modal-header"  style="background-color: #2f3551;">
+                    <img class="float-start" src="./assets/img/logo_natural_life.png" alt=""
+                        style="width: 45px; margin-right: 10px;">
+                    <span class="text-white text-table pt-2" id="centrar-elemento">
+                        <b>DETALLE DE LA COMPRA</b></span>
+                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bx bx-x"></i>
+                    </button>
+                </div>
+                <div class="modal-body" style="background: #FFFFFF;">
+                    <div class="card-body border-dark">
+                        
+    
+                          <table class="table table-hover">
+                            <thead style="background: #002454; color: #FFFFFF">
+                                <tr class="text-center">
+                                    <th>Materia Prima</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let detalle of detalles" >
+                                    <td> {{detalle.nombreproducto}}</td>
+                                    <td>{{detalle.cantidad}}</td>
+                                    <td>{{detalle.precioUnitario}}</td>
+                                    
+                                    </tr><tr>
+                                        <td colspan="2"><strong>Total:</strong></td>
+                                        <td>{{ calcularTotal() }}</td>
+                                      </tr>
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+
+</body>
+</html>

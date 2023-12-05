@@ -1,0 +1,177 @@
+
+
+  <div class="container-fluid">
+    <div class="row justify-content-between align-items-center">
+        <br>
+        <br>
+        <br>
+        <div class="col-lg-6 text-end">
+            <h1 class="mb-4"></h1>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+            <a routerLink="/MostrarRecetasComponent" class="btn btn-primary">Ver Recetas</a>
+        </div>
+    </div>
+    <div class="row mt-4 justify-content-center">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="title">Crear Receta</h2>
+                </div>
+                <div class="card-body">
+                    <form #miFormulario="ngForm" (ngSubmit)="submitForm(miFormulario)">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre receta:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" 
+                                    required [(ngModel)]="receta.nombre">
+                            </div>
+                        </div>
+                        <div class="col">
+                          <div class="mb-3" *ngFor="let ingredient of receta.ingredientes; let i = index">
+                              <label for="ingrediente{{ i }}" class="form-label">Ingrediente {{ i + 1 }}:</label>
+                              <select class="form-control" [id]="'ingrediente' + i" [name]="'ingrediente' + i" [(ngModel)]="ingredient.ingrediente">
+                                <option *ngFor="let materia of materiasP" [value]="materia.nombre">{{ materia.nombre }}</option>
+                              </select>
+                              <label for="cantidad{{ i }}" class="form-label">Cantidad {{ i + 1 }}:</label>
+                              <input type="number" class="form-control" [id]="'cantidad' + i" [name]="'cantidad' + i" [(ngModel)]="ingredient.cantidad">
+                              <button class="btn btn-danger" (click)="eliminarIngrediente(i)">Eliminar</button>
+                          </div>
+                          <button class="btn btn-success" (click)="agregarIngrediente()">Agregar Ingrediente</button>
+                      </div>
+                      
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="cantidadProducto" class="form-label">Cantidad Producto:</label>
+                                <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto"
+                                    required [(ngModel)]="receta.cantidadProducto">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="idProducto" class="form-label">Producto:</label>
+                                <select class="form-control" id="idProducto" name="idProducto" required [(ngModel)]="receta.idProducto">
+                                  <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary container-fluid">Registrar Receta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+<!-- <section>
+    <div class="container-md">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-8 text-end">
+                <h1 class="mb-4">Agregar Receta</h1>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                Enlace para regresar o realizar otras acciones
+            </div>
+        </div>
+        <br>
+        <form #miFormulario="ngForm" (ngSubmit)="submitForm(miFormulario)">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre de la Receta:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="receta.Nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="producto" class="form-label">Producto:</label>
+                
+            </div>
+            <div class="mb-3">
+                <label for="cantidadProducto" class="form-label">Cantidad del Producto:</label>
+                <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto" [(ngModel)]="receta.CantidadProducto" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Materias Primas:</label>
+                
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select" name="materiaPrima" [(ngModel)]="materiaPSeleccionado.cantidad" required>
+                            <option value="" disabled>Selecciona una materia prima</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" name="cantidad" [(ngModel)]="materiaPSeleccionado.cantidad" required>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="agregarMateriaPrima()">Agregar Materia Prima</button>
+            <div class="mb-3" *ngFor="let materiaPrima of receta.MateriasPrimas; let i = index">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Materia Prima:</strong> {{ materiaPrima.nombre }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong>Cantidad:</strong> {{ materiaPrima.cantidad }}</p>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger" (click)="eliminarMateriaPrima(i)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary container-fluid">Agregar Receta</button>
+        </form>
+    </div>
+</section> -->
+
+<!-- <div class="row justify-content-center mt-4">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header text-white text-center" style="background-color: #B082B3;">
+        <h4 class="card-title">Agregar Receta</h4>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="submitForm(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+            <label for="numEntrada" class="form-label">Número de Materias Primas:</label>
+            <input type="number" name="numEntrada" [(ngModel)]="receta.MateriasPrimas.length" class="form-control" required>
+            <button type="button" (click)="agregarMateriaPrima()" class="btn btn-secondary">Generar</button>
+          </div>
+        </form>
+        <hr>
+        <form *ngIf="receta.MateriasPrimas.length > 0" (ngSubmit)="submitForm(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" name="nombre" [(ngModel)]="receta.Nombre" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="cantidad_producto" class="form-label">Cantidad de Producto:</label>
+            <input type="number" name="cantidad_producto" [(ngModel)]="receta.CantidadProducto" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="producto_id" class="form-label">Producto:</label>
+            <select name="producto_id" [(ngModel)]="receta.IdProducto" class="form-control" required>
+              <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
+            </select>
+          </div>
+          <div *ngFor="let materiaPrima of receta.MateriasPrimas; let i = index">
+            <hr>
+            <div class="form-group">
+              <label class="form-label">Materia Prima {{ i }}:</label>
+              <select class="form-control" id="idMateriaPrima{{i}}" name="idMateriaPrima{{i}}" required
+                [(ngModel)]="materiaPrima.IdMateriaPrima">
+                <option *ngFor="let materia of materiasP" [value]="materia.id">{{materia.nombre}}</option>
+              </select>                      
+            </div>
+            <div class="form-group">
+              <label class="form-label">Cantidad:</label>
+              <input type="number" name="cantidad{{ i }}" [(ngModel)]="materiaPrima.Cantidad" class="form-control" required>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->

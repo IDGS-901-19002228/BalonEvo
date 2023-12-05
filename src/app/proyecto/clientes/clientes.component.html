@@ -1,0 +1,114 @@
+<section>
+    <div class="container-fluid" style="padding: 50px; padding-top: 20px;"
+        *ngIf="clienteTipo === 'Empleado' || clienteTipo === 'Administrador'">
+        <div class="row">
+            <div class="col-md search">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="search-container">
+                        <i class="fas fa-search text-white mr-2"></i>
+                        <input type="text" class="search-input form-control" placeholder="Buscar cliente..."
+                            [(ngModel)]="busqueda" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Formulario de edición -->
+            <div class="col-md-3 form-container">
+                <div class="form-header">
+                    <h4 class="form-title">Editar Cliente</h4>
+                </div>
+                <form #miFormulario="ngForm" (ngSubmit)="guardarCambios(miFormulario)">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" disabled="disabled" id="nombre" name="nombre"
+                                    [(ngModel)]="clienteSeleccionado.nombre" required readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="usuario" class="form-label">Usuario:</label>
+                                <input type="text" class="form-control" id="usuario" name="usuario"
+                                    [(ngModel)]="clienteSeleccionado.usuario" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-2">
+                            <label for="correo" class="form-label">Correo:</label>
+                            <input type="text" class="form-control" disabled="disabled" id="correo" name="correo"
+                                [(ngModel)]="clienteSeleccionado.correo" required readonly />
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-12">
+                        <div class="mb-2">
+                            <label for="contrasenia" class="form-label">Contraseña:</label>
+                            <input type="text" class="form-control" id="contrasenia" name="contrasenia"
+                                [(ngModel)]="clienteSeleccionado.contrasenia" required />
+                        </div>
+                    </div> -->
+                    <!-- Resto del formulario de edición -->
+                    <div class="btn-form boton">
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Tabla de clientes -->
+            <div class="col-md-8 tabla-container" [class.expanded]="!mostrarFormulario" style="text-align: center;">
+                <table class="tabla" [class.width]="!mostrarFormulario">
+                    <thead class="tabla-head">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cliente of filtrarUsuariosPaginados()"
+                            [ngClass]="{ 'usuario-inactivo': cliente.estatus === 'Inactivo' }">
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.usuario }}</td>
+                            <td>{{ cliente.correo }}</td>
+                            <td>
+                                <button class="btn btn-warning text-white"
+                                    *ngIf="cliente.rol !== 'Administrador' && cliente.estatus !== 'Inactivo'"
+                                    (click)="alternarFormulario(cliente)">
+                                    <i class="fas fa-pencil-alt"></i>Editar
+                                </button>
+                                <button class="btn btn-success text-white"
+                                    *ngIf="cliente.rol !== 'Administrador' && cliente.estatus === 'Inactivo'"
+                                    (click)="activarUsuario(cliente)">
+                                    <i class="fas fa-check"></i>Habilitar
+                                </button>
+                                <button class="btn btn-danger mx-1" *ngIf="cliente.rol !== 'Administrador'"
+                                    (click)="cambiarEstatus(cliente)">
+                                    <i class="fas fa-trash-alt"></i>Inhabilitar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="pagination-container">
+                    <div class="pagination">
+                        <button class="btn btn-link" [disabled]="paginaActual === 1" (click)="cambiarPagina(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span>{{ paginaActual }} página de {{ totalPaginas }}</span>
+                        <button class="btn btn-link" [disabled]="paginaActual === totalPaginas"
+                            (click)="cambiarPagina(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-message" *ngIf="clienteTipo === ''">
+        No puedes visualizar este contenido, debes iniciar sesión
+    </div>
+</section>

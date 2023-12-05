@@ -1,0 +1,90 @@
+<section>
+    <div class="container-fluid" style="padding:50px; padding-top: 20px;">
+        <div class=" row">
+            <!-- Formulario de edición -->
+            <div class="col-md-{{ mostrarFormulario ? '3' : '0' }} form-container" *ngIf="mostrarFormulario">
+                <div class="form-header">
+                    <h4 class="form-title">Editar Materia Prima</h4>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    [(ngModel)]="materiaPSeleccionado.nombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="descripcion" class="form-label">Descripcion:</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion"
+                                    [(ngModel)]="materiaPSeleccionado.descripcion" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="cantidad" class="form-label">Cantidad:</label>
+                                <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                    [(ngModel)]="materiaPSeleccionado.cantidad" required>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="unidad_medida" class="form-label">Unidad Medida:</label>
+                                <input type="text" class="form-control" id="unidad_medida" name="unidad_medida"
+                                    [(ngModel)]="materiaPSeleccionado.unidad_medida" required>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="stock" class="form-label">Stock:</label>
+                                <input type="number" class="form-control" id="stock" name="stock"
+                                    [(ngModel)]="materiaPSeleccionado.stock" required>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="btn-form">
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <div class="col-md-{{ mostrarFormulario ? '8' : '8' }} tabla-container"
+                [class.expanded]="!mostrarFormulario" style="text-align: center; font-size: 12px;">
+                <table class="table tabla " [class.width]="!mostrarFormulario">
+                    <thead>
+                        <tr>
+                            <th *ngIf="!mostrarFormulario">Nombre</th>
+                            <th *ngIf="!mostrarFormulario">Descripcion</th>
+                            <th *ngIf="!mostrarFormulario">Cantidad</th>
+                            <!-- <th *ngIf="!mostrarFormulario">Unidad Medida</th> -->
+                            <!-- <th *ngIf="!mostrarFormulario">Stock</th> -->
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let materiaP of materiasP">
+                            <td *ngIf="!mostrarFormulario">{{ materiaP.nombre }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ materiaP.descripcion }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ materiaP.cantidad }}</td>
+                            <!-- <td *ngIf="!mostrarFormulario">{{materiaP.unidad_medida}}</td> -->
+                            <!-- <td >{{materiaP.stock}}</td> -->
+                            <td>{{ materiaP.estatus }}</td>
+                            <td>
+                                <button class="btn btn-warning text-white" (click)="alternarFormulario(materiaP)">
+                                    <i class="fas fa-pencil-alt"></i>Editar
+                                </button>
+                                <button class="btn btn-danger mx-1" (click)="eliminarMateriaP(materiaP.id)">
+                                    <i class="fas fa-trash-alt"></i>Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

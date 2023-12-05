@@ -1,0 +1,126 @@
+<section>
+    <div class="container-fluid" style="padding:50px; padding-top: 20px;"
+        *ngIf="usuarioTipo === 'Empleado' || usuarioTipo === 'Administrador'">
+        <div class=" row">
+            <a routerLink="/RecetaComponent"
+                class="btn btn-success float-end ms-3">
+                <i class="icon-pencil icon-white"></i>Agregar receta
+            </a>
+            <!-- Formulario de edición -->
+            <div
+                class="col-md-{{ mostrarFormulario ? '3' : '0' }} form-container"
+                *ngIf="mostrarFormulario">
+                <div class="form-header" [class.expanded]="!mostrarFormulario">
+                    <h4 class="form-title">Editar Proveedor</h4>
+                </div>
+                <form #miFormulario="ngForm"
+                    (ngSubmit)="actualizarProducto(miFormulario)"
+                    [class.width]="!mostrarFormulario">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control"
+                                    id="nombre" name="nombre"
+                                    [(ngModel)]="productoSeleccionado.nombre"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="empresa" class="form-label">Imagen:</label>
+                                <input type="text" class="form-control"
+                                    id="empresa" name="empresa"
+                                    [(ngModel)]="productoSeleccionado.imagen"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="rfc" class="form-label">Descripcion:</label>
+                                <input type="text" class="form-control" id="rfc"
+                                    name="rfc"
+                                    [(ngModel)]="productoSeleccionado.descripcion"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="telefono" class="form-label">Precio:</label>
+                                <input type="number" class="form-control"
+                                    id="telefono" name="telefono"
+                                    [(ngModel)]="productoSeleccionado.precio"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="correo" class="form-label">Stock:</label>
+                                <input type="number" class="form-control"
+                                    id="correo" name="correo"
+                                    [(ngModel)]="productoSeleccionado.stock"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success">Guardar
+                            Cambios</button>
+                        <!-- <button class="btn btn-secondary text-white" *ngFor="let producto of productos" (click)="alternarFormulario(producto.id)">
+                            <i class="fas fa-pencil-alt"></i>Volver
+                        </button> -->
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <div
+                class="col-md-{{ mostrarFormulario ? '8' : '8' }} tabla-container"
+                [class.expanded]="!mostrarFormulario"
+                style="text-align: center; font-size: 12px;">
+                <table class="table tabla " [class.width]="!mostrarFormulario">
+                    <thead>
+                        <tr>
+                            <th *ngIf="!mostrarFormulario">Imagen</th>
+                            <th *ngIf="!mostrarFormulario">Nombre</th>
+                            <th *ngIf="!mostrarFormulario">Descripcion</th>
+                            <th *ngIf="!mostrarFormulario">Precio</th>
+                            <th *ngIf="!mostrarFormulario">Stock</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos">
+                            <td *ngIf="!mostrarFormulario">{{ producto.imagen }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ producto.nombre }}</td>
+                            <td *ngIf="!mostrarFormulario">{{
+                                producto.descripcion }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ producto.precio }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ producto.stock }}</td>
+                            <td>{{ producto.estatus }}</td>
+                            <td>
+                                <button class="btn btn-warning text-white"
+                                    (click)="alternarFormulario(producto)">
+                                    <i class="fas fa-pencil-alt"></i>Editar
+                                </button>
+                                <button class="btn btn-danger mx-1"
+                                    (click)="eliminarProducto(producto.id)">
+                                    <i class="fas fa-trash-alt"></i>Eliminar
+                                </button>
+                                <button class="btn btn-primary mx-1"
+                                    (click)="fabricarProducto(producto.id)">
+                                    <i class="fas fa-tools"></i>Fabricar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,46 @@
+<section class="profile-section">
+    <div class="container-md" *ngIf="usuarioTipo === 'Cliente'">
+        <div class="profile-card">
+            <div class="content-container">
+                <h1 class="profile-title">Perfil de Usuario</h1>
+                <div class="profile-details">
+                    <div class="profile-item">
+                        <label class="profile-label">Nombre:</label>
+                        <input type="text" class="profile-input" [(ngModel)]="datosCliente.nombre"
+                            [disabled]="!modoEdicion">
+                    </div>
+                    <div class="profile-item">
+                        <label class="profile-label">Correo:</label>
+                        <input type="text" class="profile-input" [(ngModel)]="datosCliente.correo"
+                            [disabled]="!modoEdicion">
+                    </div>
+                    <div class="profile-item">
+                        <label class="profile-label">Usuario:</label>
+                        <input type="text" class="profile-input" [(ngModel)]="datosCliente.usuario"
+                            [disabled]="!modoEdicion">
+                    </div>
+                    <div class="profile-item">
+                        <label class="profile-label">Contraseña:</label>
+                        <div class="password-input">
+                            <input type="{{ passwordVisible ? 'text' : 'password' }}" class="profile-input"
+                                [(ngModel)]="datosCliente.contrasenia" [disabled]="!modoEdicion">
+                            <span class="toggle-password" (click)="togglePasswordVisibility()">
+                                <i class="fa"
+                                    [ngClass]="{'fa-eye': passwordVisible, 'fa-eye-slash': !passwordVisible}"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Repite las otras secciones de perfil-item para cada campo -->
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-warning" *ngIf="!modoEdicion" (click)="editarPerfil()">Editar</button>
+                    <button class="btn btn-success" *ngIf="modoEdicion" (click)="guardarCambios()">Guardar
+                        Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="warning-message" *ngIf="usuarioTipo === ''">
+        No puedes visualizar este contenido, debes iniciar sesión
+    </div>
+</section>

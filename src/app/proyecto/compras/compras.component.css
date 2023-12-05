@@ -1,0 +1,89 @@
+.card-header {
+    background-color: #2f3551;
+
+}
+
+.title {
+    color: white;
+
+}
+
+.btn1 {
+
+    background-color: #2f3551;
+    /* color de fondo */
+    border: 15%;
+    /* eliminamos borde */
+    color: white;
+    /* color del texto */
+    padding: 10px 20px;
+    /* tamaño del padding */
+    text-align: center;
+    /* alineación del texto */
+    text-decoration: none;
+    /* eliminamos subrayado */
+    display: inline-block;
+    /* convertimos en bloque */
+    font-size: 16px;
+    /* tamaño de fuente */
+    margin: 4px 2px;
+    /* margen */
+    cursor: pointer;
+    /* cambiamos el cursor */
+    border-radius: 10px;
+    /* agregamos bordes redondeados */
+    border-color: #2f3551;
+
+}
+
+.btn1:hover {
+    background-color: #E6FFD4;
+    /* Cambia el color de fondo al pasar el cursor sobre el botón */
+    border-color: #8CB370;
+    /* Cambia el color del borde al pasar el cursor sobre el botón */
+    color: black;
+    
+}
+
+
+.btn-primary {
+    background-color: #2f3551;
+    border-color: #2f3551;
+    margin-bottom: 30px;
+    margin-top: 5px;
+  }
+
+
+.btnC {
+    background-color: #ea6868;
+    /* color de fondo */
+    border: 15%;
+    /* eliminamos borde */
+    color: white;
+    /* color del texto */
+    padding: 10px 20px;
+    /* tamaño del padding */
+    text-align: center;
+    /* alineación del texto */
+    text-decoration: none;
+    /* eliminamos subrayado */
+    display: inline-block;
+    /* convertimos en bloque */
+    font-size: 16px;
+    /* tamaño de fuente */
+    margin: 4px 2px;
+    /* margen */
+    cursor: pointer;
+    /* cambiamos el cursor */
+    border-radius: 10px;
+    /* agregamos bordes redondeados */
+    border-color: #e4aaa5;
+}
+
+.btnC:hover {
+    background-color: #e4aaa5;
+    /* Cambia el color de fondo al pasar el cursor sobre el botón */
+    border-color: #ea6868;
+    /* Cambia el color del borde al pasar el cursor sobre el botón */
+    color: black;
+}

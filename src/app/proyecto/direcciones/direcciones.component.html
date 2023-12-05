@@ -1,0 +1,98 @@
+<!-- <div class="row justify-content-center">
+    <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row control-group">
+                        <form action="/addDireccion" method="post">
+                            <div class="form-group col-xs-12 float-label-form-group controls">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    required >
+                            </div>
+                            <div class="form-group col-xs-12 float-label-form-group controls">
+                                <label for="nombre" class="form-label">Calle y Numero:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    required >
+                            </div>
+                            <div class="form-group col-xs-12 float-label-form-group controls">
+                                <label for="nombre" class="form-label">Codigo Postal:</label>
+                                <input type="number" class="form-control" id="nombre" name="nombre"
+                                    required >
+                            </div>
+                            <div class="form-group col-xs-12 float-label-form-group controls">
+                                <label for="nombre" class="form-label">Telefono:</label>
+                                <input type="number" class="form-control" id="nombre" name="nombre"
+                                    required >
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-success">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-6">
+                            <a href="" class="btn btn-danger offset-md-3"><i class="icon-action-undo icon-white"></i>Cancelar</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container-fluid">
+    <div class="row justify-content-between align-items-center">
+        <br>
+        <br>
+        <br>
+        <div class="col-lg-6 text-end">
+            <h1 class="mb-4"></h1>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+            <a href="/MostrarComprasComponent" class="btn btn-primary">Ver Compras</a>
+        </div>
+    </div>
+    <div class="row mt-4 justify-content-center">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="title">Direcciones</h2>
+                </div>
+                <div class="card-body">
+                    <form #miFormulario="ngForm" (ngSubmit)="submitForm(miFormulario)">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="nombreCompleto" class="form-label">Colonia:</label>
+                                <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" 
+                                required [(ngModel)]="direccion.nombreCompleto">
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="calleNumero" class="form-label">Calle y Numero:</label>
+                                <input type="text" class="form-control" id="calleNumero" name="calleNumero" 
+                                    required [(ngModel)]="direccion.calleNumero">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="codigoPostal" class="form-label">Codigo Postal:</label>
+                                <input type="number" class="form-control" id="codigoPostal" name="codigoPostal"
+                                     required [(ngModel)]="direccion.codigoPostal">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Telefono:</label>
+                                <input type="number" class="form-control" id="telefono" name="telefono"
+                                     required [(ngModel)]="direccion.telefono">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary container-fluid">Registrar Direccion</button>
+                </form>
+            </div>
+         </div>
+     </div>
+</div>

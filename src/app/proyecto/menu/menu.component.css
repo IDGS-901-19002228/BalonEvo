@@ -1,0 +1,64 @@
+/* NUEVO ESTILO DEL NUEVO NAV DE EJEMPLO */
+.navbar-brand {
+    letter-spacing: 3px;
+    color: #c24244;
+}
+
+.navbar-brand:hover {
+    color: #c24244;
+}
+
+.navbar-scroll .nav-link,
+.navbar-scroll .fa-bars {
+    color: #fff;
+}
+
+.navbar-scrolled .nav-link,
+.navbar-scrolled .fa-bars {
+    color: #7f4722;
+}
+
+.navbar-scrolled {
+    background-color: #ffede7;
+}
+
+
+.img-izquierda {
+    float: left;
+    max-height: 200%;
+    max-width: 200px; /* Ajusta el valor según el tamaño deseado */
+    margin-left: -70px;
+    
+}
+
+/* Estilo para ocultar la ventana emergente inicialmente */
+.hidden {
+    display: none;
+  }
+  
+  /* Estilo para la ventana emergente de productos */
+  #productWindow {
+    position: absolute;
+    top: 40px; /* Ajusta la posición vertical según la altura de tu navbar */
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2f3551;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 10px;
+    color: white;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }

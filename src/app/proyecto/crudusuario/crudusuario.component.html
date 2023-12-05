@@ -1,0 +1,181 @@
+<section>
+    <div class="container-fluid" style="padding:50px; padding-top: 20px;" *ngIf="usuarioTipo === 'Administrador'">
+        <div class=" row">
+            <div class="col-md-{{ mostrarFormulario ? '6' : '12' }} search" *ngIf="!mostrarFormulario">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="search-container">
+                        <i class="fas fa-search text-white mr-2"></i>
+                        <input type="text" class="search-input form-control" placeholder="Buscar usuario..."
+                            [(ngModel)]="busqueda">
+                    </div>
+                </div>
+            </div>
+            <!-- Formulario de edición -->
+            <div class="col-md-{{ mostrarFormulario ? '3' : '0' }} form-container" *ngIf="mostrarFormulario">
+                <div class="form-header">
+                    <h4 class="form-title">Editar Usuario</h4>
+                </div>
+                <form #miFormulario="ngForm" (ngSubmit)="guardarCambios(miFormulario)">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    [(ngModel)]="usuarioSeleccionado.nombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="edad" class="form-label">Edad:</label>
+                                <input type="text" class="form-control" id="edad" name="edad"
+                                    [(ngModel)]="usuarioSeleccionado.edad" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="apellidoPaterno" class="form-label">Apellido Paterno:</label>
+                                <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno"
+                                    [(ngModel)]="usuarioSeleccionado.apellidoPaterno" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="apellidoMaterno" class="form-label">Apellido Materno:</label>
+                                <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno"
+                                    [(ngModel)]="usuarioSeleccionado.apellidoMaterno" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="direccion" class="form-label">Direccion:</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion"
+                                    [(ngModel)]="usuarioSeleccionado.direccion" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="sexo" class="form-label">Sexo:</label>
+                                <select class="form-control" id="sexo" name="sexo"
+                                    [(ngModel)]="usuarioSeleccionado.sexo" required>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="usuario" class="form-label">Usuario:</label>
+                                <input type="text" class="form-control" id="usuario" name="usuario"
+                                    [(ngModel)]="usuarioSeleccionado.usuario" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="contrasenia" class="form-label">Contraseña:</label>
+                                <input type="text" class="form-control" id="contrasenia" name="contrasenia"
+                                    [(ngModel)]="usuarioSeleccionado.contrasenia" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="telefono" class="form-label">Telefono:</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono"
+                                    [(ngModel)]="usuarioSeleccionado.telefono" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="rol" class="form-label">Rol:</label>
+                                <select class="form-control" id="rol" name="rol" [(ngModel)]="usuarioSeleccionado.rol"
+                                    required>
+                                    <option value="Empleado">Empleado</option>
+                                    <option value="Administrador">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <div class="col-md-{{ mostrarFormulario ? '8' : '8' }} tabla-container"
+                [class.expanded]="!mostrarFormulario" style="text-align: center;">
+                <table class="tabla" [class.width]="!mostrarFormulario">
+                    <thead class="tabla-head">
+                        <tr>
+                            <th>Nombre</th>
+                            <th *ngIf="!mostrarFormulario">Apellido Paterno</th>
+                            <th *ngIf="!mostrarFormulario">Apellido Materno</th>
+                            <th>Edad</th>
+                            <th *ngIf="!mostrarFormulario">Sexo</th>
+                            <th>Telefono</th>
+                            <th *ngIf="!mostrarFormulario">Direccion</th>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of filtrarUsuariosPaginados()"
+                            [ngClass]="{'usuario-inactivo': usuario.estatus === 'Inactivo'}">
+                            <td>{{ usuario.nombre }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ usuario.apellidoPaterno }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ usuario.apellidoMaterno }}</td>
+                            <td>{{ usuario.edad }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ usuario.sexo }}</td>
+                            <td>{{ usuario.telefono }}</td>
+                            <td *ngIf="!mostrarFormulario">{{ usuario.direccion }}</td>
+                            <td>{{ usuario.usuario }}</td>
+                            <td>{{ usuario.rol }}</td>
+                            <td>
+                                <button class="btn btn-warning text-white"
+                                    *ngIf="usuario.rol !== 'Administrador' && usuario.estatus !== 'Inactivo'"
+                                    (click)="alternarFormulario(usuario)">
+                                    <i class="fas fa-pencil-alt"></i>Modificar
+                                </button>
+                                <button class="btn btn-success text-white"
+                                    *ngIf="usuario.rol !== 'Administrador' && usuario.estatus === 'Inactivo'"
+                                    (click)="activarUsuario(usuario)">
+                                    <i class="fas fa-check"></i>Activar
+                                </button>
+                                <button class="btn btn-danger mx-1" *ngIf="usuario.rol !== 'Administrador'"
+                                    (click)="cambiarEstatus(usuario)">
+                                    <i class="fas fa-trash-alt"></i> Eliminar<!-- Icono de eliminar -->
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pagination-container">
+                    <div class="pagination">
+                        <button class="btn btn-link" [disabled]="paginaActual === 1" (click)="cambiarPagina(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span>{{ paginaActual }} página de {{ totalPaginas }}</span>
+                        <button class="btn btn-link" [disabled]="paginaActual === totalPaginas"
+                            (click)="cambiarPagina(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-message" *ngIf="usuarioTipo === ''">
+        No puedes visualizar este contenido, debes iniciar sesión
+    </div>
+</section>
