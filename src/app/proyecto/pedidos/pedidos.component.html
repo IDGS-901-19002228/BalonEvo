@@ -1,1 +1,31 @@
-<p>pedidos works!</p>
+<!-- pedidos.component.html -->
+
+<div class="container">
+    <h2>Listado de Pedidos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pedido of pedidos">
+                <td>{{ pedido.idPedido }}</td>
+                <td>{{ pedido.folio }}</td>
+                <td>{{ pedido.fecha }}</td>
+                <td>{{ pedido.estatus }}</td>
+                <td>
+                    <button
+                        (click)="actualizarEnProcesoAEnCamino(pedido.idPedido)">En
+                        Camino</button>
+                    <button
+                        (click)="actualizarEnCaminoAEntregado(pedido.idPedido)">Entregado</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

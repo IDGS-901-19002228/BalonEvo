@@ -47,6 +47,7 @@ import { MostrarCModule } from './proyecto/compras/mostrar-compras/mostrar-c/mos
 import { MostrarRctaModule } from './proyecto/receta/mostrar-recetas/mostrar-rcta/mostrar-rcta.module';
 import { DireccionesModule } from './proyecto/direcciones/direcciones/direcciones.module';
 import { CatalogoModule } from './proyecto/catalogo/catalogo/catalogo.module';
+import { PedidoModule } from './proyecto/pedidos/pedidos/pedidos.module';
 
 
 
@@ -94,6 +95,7 @@ import { CatalogoModule } from './proyecto/catalogo/catalogo/catalogo.module';
     MostrarCModule,
     DireccionesModule,
     CatalogoModule,
+    PedidoModule,
     AppRoutingModule,
     RouterModule
   ],

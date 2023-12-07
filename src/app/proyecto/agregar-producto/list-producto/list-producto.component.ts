@@ -13,6 +13,7 @@ export class ListProductoComponent implements OnInit {
 
   usuarioTipo: string = ''; // Tipo de usuario
   productos: any[] = [];
+  recetas: any[] = [];
   mostrarFormulario = false;
   productoSeleccionado: any = {};
 
@@ -22,7 +23,19 @@ export class ListProductoComponent implements OnInit {
     this.userService.usuarioTipo$.subscribe(tipo => {
       this.usuarioTipo = tipo;
     });
+    this.obtenerRecetas();
     this.obtenerProductos();
+  }
+
+  obtenerRecetas() {
+    this.http.get('https://idgs901apibalones20231114015214.azurewebsites.net/api/Receta/ver-recetas').subscribe(
+      (response: any) => {
+        this.recetas = response;
+      },
+      (error) => {
+        console.error('Error al obtener compras:', error);
+      }
+    );
   }
 
   alternarFormulario(producto: any) {
@@ -109,26 +122,43 @@ export class ListProductoComponent implements OnInit {
   // }
 
   
-  fabricarProducto(idProducto: number) {
-    this.http.post(`https://idgs901apibalones20231114015214.azurewebsites.net/api/Fabricar/${idProducto}`, {}).subscribe(
-      (response: any) => {
-        console.log('Respuesta:', response);
-        Swal.fire({
-          icon: 'success',
-          title: 'Éxito',
-          text: response.message // Accede al mensaje de la respuesta
-        });
-      },
-      (error) => {
-        console.error('Error:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Ha ocurrido un error al fabricar el producto'
-        });
-      }
-    );
+  fabricarProducto(id: number) {
+    // Buscar la receta correspondiente al idProducto
+    const receta = this.recetas.find(receta => receta.idProducto === id);
+  
+    if (receta) {
+      // Obtener el idProducto de la receta
+      const idProductoReceta = receta.idProducto;
+  
+      // Ahora puedes usar idProductoReceta en la llamada al endpoint de fabricación
+      this.http.post(`https://idgs901apibalones20231114015214.azurewebsites.net/api/Fabricar/${idProductoReceta}`, {}).subscribe(
+        (response: any) => {
+          console.log('Respuesta:', response);
+          Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: response.message
+          });
+        },
+        (error) => {
+          console.error('Error:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ha ocurrido un error al fabricar el producto'
+          });
+        }
+      );
+    } else {
+      console.error('No se encontró la receta para el producto con id:', id);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se encontró la receta para el producto.'
+      });
+    }
   }
+  
   
   
 

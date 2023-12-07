@@ -37,6 +37,7 @@ import { DireccionesComponent } from "./proyecto/direcciones/direcciones.compone
 import { CRUDusuarioComponent } from "./proyecto/crudusuario/crudusuario.component";
 import { ClientesComponent } from "./proyecto/clientes/clientes.component";
 import { PerfilComponent } from "./proyecto/perfil/perfil.component";
+import { PedidosComponent } from "./proyecto/pedidos/pedidos.component";
 
 const routes:Routes=[
     {path: '',redirectTo: '/home', pathMatch:'full'},
@@ -67,6 +68,7 @@ const routes:Routes=[
     {path: 'CRUDusuarioComponent', component: CRUDusuarioComponent },
     {path: 'ClientesComponent', component: ClientesComponent },
     {path: 'PerfilComponent', component: PerfilComponent },
+    {path: 'Pedidos', component: PedidosComponent }
     
 
 ];

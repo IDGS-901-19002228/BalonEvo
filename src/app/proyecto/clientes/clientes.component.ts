@@ -47,7 +47,7 @@ export class ClientesComponent {
   alternarFormulario(cliente: any) {
     this.clienteSeleccionado = cliente; // Asigna los valores del cliente
     this.mostrarFormulario = true;
-}
+  }
 
   obtenerUsuarios() {
     this.http.get('https://idgs901apibalones20231114015214.azurewebsites.net/api/Cliente').subscribe(

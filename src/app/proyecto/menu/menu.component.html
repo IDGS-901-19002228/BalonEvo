@@ -87,6 +87,11 @@
                             <a class="nav-link px-3"
                                 routerLink="/AgregarProductoComponent">Productos</a>
                         </li>
+                        <li class="nav-item"
+                            *ngIf="usuarioTipo === 'Administrador' || usuarioTipo === 'Empleado'">
+                            <a class="nav-link px-3"
+                                routerLink="/Pedidos">Pedidos</a>
+                        </li>
                         <!-- <li class="nav-item" *ngIf="usuarioTipo === 'Administrador' || usuarioTipo === 'Empleado'">
                             <a class="nav-link px-3" routerLink="/DireccionesComponent">Direcciones</a>
                         </li> -->
