@@ -131,7 +131,7 @@ export class ListProductoComponent implements OnInit {
       const idProductoReceta = receta.idProducto;
   
       // Ahora puedes usar idProductoReceta en la llamada al endpoint de fabricación
-      this.http.post(`https://idgs901apibalones20231114015214.azurewebsites.net/api/Fabricar/${idProductoReceta}`, {}).subscribe(
+      this.http.put(`https://idgs901apibalones20231114015214.azurewebsites.net/api/Fabricar/${idProductoReceta}`, {}).subscribe(
         (response: any) => {
           console.log('Respuesta:', response);
           Swal.fire({
